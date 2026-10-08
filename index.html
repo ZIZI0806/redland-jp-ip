@@ -205,7 +205,10 @@ body{
 }
 .gallery .gtop .gcount{font-size:11.5px;color:var(--ink3)}
 .gallery .gstrip{
-  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);
+  /* minmax(168px,1fr)：图少时（≤5 张）铺满一行，与原来 1fr 的观感一致；
+     图多时列宽不再被压缩，改为横向滚动。原写法 grid-auto-columns:1fr
+     会让 8 张图各缩到 ~110px，图越多越小 —— 补了远景图之后这个问题才会显形。 */
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(168px,1fr);
   gap:10px;overflow-x:auto;padding-bottom:6px;
   scrollbar-width:thin;
 }
